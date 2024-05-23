@@ -1,0 +1,21 @@
+.sports {
+    padding: 20px;
+  }
+  
+  .sport {
+    margin-bottom: 20px;
+  }
+  
+  .sport h2 {
+    color: #333;
+  }
+  
+  .sport p {
+    color: #666;
+  }
+  
+  .sport img {
+    max-width: 100%;
+    height: auto;
+  }
+  

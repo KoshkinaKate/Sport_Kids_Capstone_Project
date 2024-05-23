@@ -1,0 +1,16 @@
+.events {
+    padding: 20px;
+  }
+  
+  .event {
+    margin-bottom: 20px;
+  }
+  
+  .event h2 {
+    color: #333;
+  }
+  
+  .event p {
+    color: #666;
+  }
+  

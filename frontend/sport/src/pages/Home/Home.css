@@ -1,0 +1,116 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poetsen One', sans-serif;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(to right, #FFD700 0%, #FFDD44 20%, #FFE866 40%, #B5DC8B 60%, #6ABA7D 80%, #006400 100%);
+  color: green;
+}
+
+.text-section {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  font-size: 23px;
+}
+
+.text-section h1 {
+  font-size: 2.5em; 
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: linear-gradient(to right, #006400, #5dc876, #88e427, #FFE866, #FFDD44, #FFD700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.video-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.video-section video {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.content-section {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 18px;
+}
+
+.content-section p {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.facts-section {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.fact-container {
+  background-color: rgba(215, 126, 49, 0.5);
+  border-radius: 8px;
+  padding: 20px;
+  width: 30%;
+  text-align: center;
+  margin: 10px;
+  color: rgb(255, 255, 255); 
+  font-weight: 200;
+  line-height: 1.6; /* Increased line spacing */
+  transition: transform 0.3s ease; /* Add transition for the hover effect */
+}
+
+.fact-container:hover {
+  transform: translateY(-10px); /* Move the container up on hover */
+}
+
+.fact-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.fact-container h3 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  font-weight: 400;
+  color: white;
+}
+
+
+.fact-container button {
+  background-color: #e99610;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px; 
+  cursor: pointer;
+  margin-top: 10px;
+  font-family: 'Poetsen One', sans-serif; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transition for the hover effect */
+}
+
+.fact-container button:hover {
+  background-color: #8db9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+  transform: translateY(-2px); /* Slightly move up the button on hover */
+}
