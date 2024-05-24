@@ -3,6 +3,9 @@
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  line-height: 1.6;
 }
 
 .sport-card {
@@ -15,6 +18,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* text-align: center; */
 }
 
 .sport-image {
@@ -24,17 +28,53 @@
 }
 
 .sport-content {
-  padding: 20px;
+  padding: 0 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sport-title {
+  font-size: 2em;
+  color: #bb6305ee;
+  margin-bottom: 10px;
   text-align: center;
 }
 
-.sport-content h3 {
-  font-size: 1.5em;
-  color: white;
-}
-
-.sport-content p {
+.sport-body p {
   font-size: 1.2em;
   color: white;
   font-weight: 300;
+  margin: 5px 0;
+  /* text-align: center;  */
+}
+
+.highlight {
+  color: #bb6305ee;
+  font-weight: bold;
+}
+
+.div-button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.sports-button {
+  background-color: #e99610;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Poetsen One', sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  
+}
+
+.sports-button:hover {
+  background-color: #8db968;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
 }

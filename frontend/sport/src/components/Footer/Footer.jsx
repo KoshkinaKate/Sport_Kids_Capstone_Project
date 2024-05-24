@@ -31,7 +31,7 @@ const Footer = () => {
           <p>All rights reserved © Kate Koshkina</p>
         </div>
         <div className="footer-right">
-          <a href="https://www.linkedin.com/in/kate-koshkina/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/kate-koshkina/" target="_blank">
             <FaLinkedin size={26} />
           </a>
         </div>
