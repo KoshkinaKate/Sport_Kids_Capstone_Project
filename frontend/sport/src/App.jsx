@@ -1,11 +1,13 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import Sports from "./pages/Sports/Sports";
-import Events from "./pages/Events/Events";
-import About from "./pages/About/About";
-import Forum from "./pages/Forum/Forum";
-import Navbar from "./components/NavBar/Navbar"
-import "./App.css";
+// src/App.jsx
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import Sports from './pages/Sports/Sports';
+import Events from './pages/Events/Events';
+import About from './pages/About/About';
+import Forum from './pages/Forum/Forum';
+import Navbar from './components/NavBar/Navbar';
+import Footer from './components/Footer/Footer';
+import './App.css';
 
 const App = () => {
   return (
@@ -18,9 +20,10 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/forum" element={<Forum />} />
       </Routes>
-      {/* <footer>All rights reserved</footer> */}
+      <Footer />
     </div>
   );
 };
 
 export default App;
+

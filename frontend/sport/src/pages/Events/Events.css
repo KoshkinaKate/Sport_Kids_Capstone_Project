@@ -1,16 +1,61 @@
-.events {
-    padding: 20px;
-  }
-  
-  .event {
-    margin-bottom: 20px;
-  }
-  
-  .event h2 {
-    color: #333;
-  }
-  
-  .event p {
-    color: #666;
-  }
-  
+/* src/pages/Events/Events.css */
+
+.events-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.event-card {
+  background-color: rgba(215, 126, 49, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  margin: 10px;
+  overflow: hidden;
+  width: calc(33.33% - 20px); /* Three cards in a row */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.event-content h2 {
+  font-size: 1.8em;
+  color: white;
+}
+
+.event-content h3 {
+  font-size: 1.2em;
+  color: white;
+  font-weight: 300;
+}
+
+.event-content h4, .event-content h5 {
+  font-size: 1em;
+  color: white;
+  font-weight: 200;
+}
+
+.event-content button {
+  background-color: #e99610;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-family: 'Poetsen One', sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.event-content button:hover {
+  background-color: #8db968;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}

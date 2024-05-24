@@ -6,20 +6,29 @@ const Events = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/events")
-      .then(response => setEvents(response.data.events))
-      .catch(error => console.error("There was an error fetching the events!", error));
+    fetchEvents();
   }, []);
 
+  const fetchEvents = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/events');
+      setEvents(response.data.events);
+    } catch (error) {
+      console.error('Error fetching events:', error);
+    }
+  };
+
   return (
-    <div className="events">
-      <h1>Events</h1>
-      {events.map((event, index) => (
-        <div key={index} className="event">
-          <h2>{event.title}</h2>
-          <p>{event.body}</p>
-          <p>{event.location}</p>
-          <p>{event.startDate} - {event.endDate}</p>
+    <div className="events-container">
+      {events.map((event) => (
+        <div key={event._id} className="event-card">
+          <div className="event-content">
+            <h2>{event.title}</h2>
+            <h3>{event.body}</h3>
+            <h4>{event.startDate}</h4>
+            <h4>{event.location}</h4>
+          
+          </div>
         </div>
       ))}
     </div>

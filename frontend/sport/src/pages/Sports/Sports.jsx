@@ -1,4 +1,3 @@
-// src/pages/Sports/Sports.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Sports.css';
