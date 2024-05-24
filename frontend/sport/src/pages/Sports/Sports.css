@@ -1,21 +1,40 @@
-.sports {
-    padding: 20px;
-  }
-  
-  .sport {
-    margin-bottom: 20px;
-  }
-  
-  .sport h2 {
-    color: #333;
-  }
-  
-  .sport p {
-    color: #666;
-  }
-  
-  .sport img {
-    max-width: 100%;
-    height: auto;
-  }
-  
+.sports-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.sport-card {
+  background-color: rgba(215, 126, 49, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  margin: 10px;
+  overflow: hidden;
+  width: calc(50% - 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sport-image {
+  width: 100%;
+  height: auto;
+  border-bottom: 2px solid #FFD700;
+}
+
+.sport-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.sport-content h3 {
+  font-size: 1.5em;
+  color: white;
+}
+
+.sport-content p {
+  font-size: 1.2em;
+  color: white;
+  font-weight: 300;
+}

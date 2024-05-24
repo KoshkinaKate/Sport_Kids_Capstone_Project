@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
 
 body {
@@ -38,11 +37,13 @@ body {
   margin-bottom: 20px;
 }
 
-.video-section video {
+.video-section iframe {
   width: 100%;
   max-width: 800px;
+  height: 450px;
   border-radius: 8px;
   outline: none;
+  border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -73,12 +74,12 @@ body {
   margin: 10px;
   color: rgb(255, 255, 255); 
   font-weight: 200;
-  line-height: 1.6; /* Increased line spacing */
-  transition: transform 0.3s ease; /* Add transition for the hover effect */
+  line-height: 1.6; 
+  transition: transform 0.3s ease;
 }
 
 .fact-container:hover {
-  transform: translateY(-10px); /* Move the container up on hover */
+  transform: translateY(-10px); 
 }
 
 .fact-container img {
@@ -95,7 +96,6 @@ body {
   color: white;
 }
 
-
 .fact-container button {
   background-color: #e99610;
   color: white;
@@ -106,11 +106,11 @@ body {
   margin-top: 10px;
   font-family: 'Poetsen One', sans-serif; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
-  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transition for the hover effect */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; 
 }
 
 .fact-container button:hover {
-  background-color: #8db9;
+  background-color: #8db968;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-  transform: translateY(-2px); /* Slightly move up the button on hover */
+  transform: translateY(-2px); 
 }

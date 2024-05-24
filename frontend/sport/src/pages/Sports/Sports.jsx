@@ -1,24 +1,46 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./Sports.css";
+// src/pages/Sports/Sports.jsx
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './Sports.css';
 
 const Sports = () => {
   const [sports, setSports] = useState([]);
+  const [showMore, setShowMore] = useState({});
 
   useEffect(() => {
-    axios.get("/api/sports")
-      .then(response => setSports(response.data.sports))
-      .catch(error => console.error("There was an error fetching the sports!", error));
+    fetchSports();
   }, []);
 
+  const fetchSports = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/sports');
+      setSports(response.data.sports);
+    } catch (error) {
+      console.error('Error fetching sports:', error);
+    }
+  };
+
+  const toggleShowMore = (id) => {
+    setShowMore((prevShowMore) => ({
+      ...prevShowMore,
+      [id]: !prevShowMore[id],
+    }));
+  };
+
   return (
-    <div className="sports">
-      <h1>Sports</h1>
-      {sports.map((sport, index) => (
-        <div key={index} className="sport">
-          <h2>{sport.title}</h2>
-          <p>{sport.body}</p>
-          <img src={sport.picture} alt={sport.title} />
+    <div className="sports-container">
+      {sports.map((sport) => (
+        <div key={sport._id} className="sport-card">
+          <img src={sport.picture} alt={sport.title} className="sport-image" />
+          <div className="sport-content">
+            <h3>{sport.title}</h3>
+            <p>
+              {showMore[sport._id] ? sport.body : `${sport.body.substring(0, 200)}...`}
+            </p>
+            <button onClick={() => toggleShowMore(sport._id)}>
+              {showMore[sport._id] ? 'Show Less' : 'Show More'}
+            </button>
+          </div>
         </div>
       ))}
     </div>
@@ -26,3 +48,4 @@ const Sports = () => {
 };
 
 export default Sports;
+

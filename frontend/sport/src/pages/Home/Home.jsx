@@ -14,8 +14,8 @@ const Home = () => {
       <div className="video-section">
       <iframe
             src="https://drive.google.com/file/d/1kBjEcZ-WE6mrvxjSeEoNFi1hu4B86OhM/preview"
-            width="640"
-            height="480"
+            width="880"
+            height="495"
             allow="autoplay"
           ></iframe>
       </div>
