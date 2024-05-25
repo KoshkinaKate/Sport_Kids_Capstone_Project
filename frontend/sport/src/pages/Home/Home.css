@@ -10,7 +10,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background: linear-gradient(to right, #FFD700 0%, #FFDD44 20%, #FFE866 40%, #B5DC8B 60%, #6ABA7D 80%, #006400 100%);
+  background: linear-gradient(to right, #f8dc3d 0%, #f9e279 20%, #f3e594 40%, #B5DC8B 60%, #9aeeae 80%, #2f7c2f 100%);
   color: green;
 }
 

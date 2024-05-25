@@ -1,10 +1,14 @@
-/* src/pages/Events/Events.css */
-
+body{
+  background-color:#fcf2e8ee;
+}
 .events-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px;
+  background-color:#fcf2e8ee;
+  height: 300px;
+  /* margin-top: 7em; */
 }
 
 .event-card {
@@ -12,7 +16,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   margin: 10px;
-  overflow: hidden;
+  margin-top: 70px;
   width: calc(33.33% - 20px); /* Three cards in a row */
   display: flex;
   flex-direction: column;
@@ -22,40 +26,52 @@
 .event-content {
   padding: 20px;
   text-align: center;
+  height: 100%;
+  
 }
 
 .event-content h2 {
-  font-size: 1.8em;
-  color: white;
+  font-size: 1.5em; 
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: linear-gradient(to right, #006400, #5dc876, #88e427, #FFE866, #FFDD44, #FFD700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 7px;
+
 }
 
 .event-content h3 {
   font-size: 1.2em;
   color: white;
   font-weight: 300;
+  margin-top: auto;
+
 }
 
-.event-content h4, .event-content h5 {
-  font-size: 1em;
-  color: white;
-  font-weight: 200;
+.event-content h5, .event-content h4{
+  font-size: 1em; 
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: green;
+  margin-top: auto;
 }
-
-.event-content button {
-  background-color: #e99610;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 12px;
+.star{
+  /* border: solid blue; */
+  justify-content: right;
+  display: flex;
+}
+.favorite-icon {
+  font-size: 1.5em;
+  color: rgba(0, 0, 0, 0.2); /* Make it visible but transparent */
   cursor: pointer;
-  margin-top: 10px;
-  font-family: 'Poetsen One', sans-serif;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition: color 0.3s;
 }
 
-.event-content button:hover {
-  background-color: #8db968;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
+.favorite-icon:hover {
+  color: yellow;
+}
+
+.favorite-icon.favorite {
+  color: yellow;
 }
