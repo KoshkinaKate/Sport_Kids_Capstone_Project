@@ -6,26 +6,27 @@ const Home = () => {
   const [showMore2, setShowMore2] = useState(false);
   const [showMore3, setShowMore3] = useState(false);
 
+  // Access the environment variable
+  const googleDriveUrl = import.meta.env.VITE_GOOGLE_DRIVE_URL;
+
   return (
     <div className="home-container">
       <div className="text-section">
         <h1>Discover the Joy of Play</h1>
       </div>
       <div className="video-section">
-      <iframe
-            src="https://drive.google.com/file/d/1kBjEcZ-WE6mrvxjSeEoNFi1hu4B86OhM/preview"
-            width="880"
-            height="495"
-            allow="autoplay"
-          ></iframe>
+        <iframe
+          src={googleDriveUrl}
+          width="880"
+          height="495"
+          allow="autoplay"
+          title="Google Drive Video"
+        ></iframe>
       </div>
       <div className="content-section">
         <p>Every child has their unique journey in sports.</p>
         <p>We’re here to support you and your child in exploring and finding the perfect fit.</p>
-        
-        <p>
-          Together, let's find the sport that makes them shine!
-        </p>
+        <p>Together, let's find the sport that makes them shine!</p>
       </div>
       <div className="facts-section">
         <div className="fact-container">
@@ -79,4 +80,5 @@ const Home = () => {
 };
 
 export default Home;
+
 
