@@ -35,7 +35,9 @@ body {
 
 .navbar ul li {
   margin: 0;
-  margin-right: 100px; /* adjust this line when ADDING SIGN IN BUTTON*/
+  /* display: flex; */
+  justify-content: space-between;
+  margin-right: 30px;
 }
 
 .navbar ul li a {

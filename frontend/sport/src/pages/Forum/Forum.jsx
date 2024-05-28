@@ -72,7 +72,7 @@ const Forum = () => {
       <ul className="forum-list">
         {questions.map((question, index) => (
           <li key={question._id}>
-            <div className="question-number">Question {index + 1}</div>
+            <div className="question-number"># {index + 1}</div>
             {editingQuestion === question._id ? (
               <div className="edit-input-container">
                 <input

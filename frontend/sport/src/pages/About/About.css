@@ -1,65 +1,71 @@
-body {
-  background-color: #f5f7fa;
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
 .about-container {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
+  margin: 60px auto;
+  background-color: #fcf2e8ee;
+  max-width: 800px;
 }
 
-.about-title {
-  color: #2d2d2d;
-  font-size: 2.5em;
-  text-align: center;
+.section-container {
+  background-color: rgba(215, 126, 49, 0.5);
+  /* border: 2px solid #d77e31; */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
   margin-bottom: 20px;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.about-intro {
-  color: #5f6368;
+.section-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.title, .subtitle {
+  font-size: 2em; 
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: linear-gradient(to right, #006400, #5dc876, #88e427, #FFE866, #FFDD44, #FFD700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 7px;
+  text-align: center;
+}
+
+.intro, .content {
   font-size: 1.2em;
+  color: white;
+  font-weight: 300;
+  margin: 10px 0;
   text-align: center;
-  margin-bottom: 20px;
+  line-height: 1.6; 
 }
 
-.about-subtitle {
-  color: #4285f4;
-  font-size: 1.8em;
-  margin-top: 20px;
-  margin-bottom: 10px;
+.list {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+.list-item::marker {
+  color: #bb6305ee; /* Sets the color for the bullets */
 }
 
-.about-content {
-  color: #5f6368;
-  font-size: 1.1em;
-  margin-bottom: 15px;
-  line-height: 1.6;
+.list-item {
+  margin: 10px 0;
 }
 
-.about-list {
-  color: #5f6368;
-  font-size: 1.1em;
-  list-style-type: disc;
-  padding-left: 20px;
-  margin-bottom: 20px;
-}
-
-.about-list li {
-  margin-bottom: 10px;
-}
-
-.about-link {
-  color: #ea4335;
+.link {
+  color: #457338ee;
   text-decoration: none;
-  font-weight: bold;
 }
 
-.about-link:hover {
+.link:hover {
   text-decoration: underline;
+}
+strong{
+  color: #bb6305ee;
+  font-size: 1.3em;
 }
