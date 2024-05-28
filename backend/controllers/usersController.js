@@ -1,276 +1,89 @@
-const User = require('../models/user');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const User = require("../models/user");
 
-// Encryption / Authentication Tools:
-const bcrypt = require('bcryptjs'); // Requires bcrypt encryption to encrypt passwords
-const jwt = require('jsonwebtoken'); // Requires jsonwebtoken for generating JWTs
-
-// ----- Get ALL Users (GET) -----
-const fetchAllUsers = async (req, res) => {
-    try {
-        // 1. Get all users from the DB:
-        const users = await User.find();
-
-        // 2. Send the users back as a response:
-        res.json({ users });
-    } catch (error) {
-        console.error('Error fetching all users:', error);
-        res.status(500).json({ message: 'An error occurred while fetching users', error: error.message });
-    }
-};
-
-////////////////////////////////////////////////////////////////////////////////////////
-
-// ----- Get specific User by ID (GET) -----
-const fetchUser = async (req, res) => {
-    const userId = req.params.id;
-    try {
-        const user = await User.findById(userId);
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.json({ user });
-    } catch (error) {
-        console.error('Error fetching user:', error);
-        res.status(500).json({ message: 'An error occurred while fetching the user', error: error.message });
-    }
-};
-
-////////////////////////////////////////////////////////////////////////////////////////
-
-// ----- Create a User (POST) -----
-const createUser = async (req, res) => {
-    const { username, password, email } = req.body;
-    console.log("Received request body:", req.body);
-
-    // Check if all required fields are present:
-    if (!username || !password || !email) {
-        console.error('Missing required fields:', { username, password, email });
-        return res.status(400).json({ message: 'Username, password, and email are required' });
-    }
-
-    // Ensure the fields are of the correct type:
-    if (typeof username !== 'string' || typeof password !== 'string' || typeof email !== 'string') {
-        console.error('Invalid field types:', { username, password, email });
-        return res.status(400).json({ message: 'Username, password, and email must be strings' });
-    }
-
-    try {
-        // Check for an existing user:
-        const existingUser = await User.findOne({ $or: [{ username }, { email }] });
-        if (existingUser) {
-            console.log("Username or email already exists.");
-            return res.status(400).json({ message: 'Username or email already exists' });
-        }
-
-        // Create the new user:
-        const user = new User({
-            username: username.toLowerCase(),
-            email: email.toLowerCase(),
-            password: password, // Raw password here, will be hashed in pre-save hook
-        });
-
-        await user.save();
-
-        // Generate JWT token after user creation:
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-
-        console.log("Successfully generated JWT token");
-
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
-            maxAge: 24 * 60 * 60 * 1000 // 1 day
-        });
-
-        // Respond with new copy of user (excluding the password):
-        res.status(201).json({ user: { _id: user._id, username: user.username, email: user.email } });
-    } catch (error) {
-        console.error('Signup error:', error);
-        res.status(500).json({ message: 'An error occurred during signup', error: error.message });
-    }
-};
-
-////////////////////////////////////////////////////////////////////////////////////////
-
-// ----- Update a specific user (PUT) -----
-const updateUser = async (req, res) => {
-    const userId = req.params.id;
-    const { username, password, email } = req.body;
-
-    // Check if required fields are of the correct type:
-    if (username && typeof username !== 'string') {
-        console.error('Invalid username type:', username);
-        return res.status(400).json({ message: 'Username must be a string' });
-    }
-    if (password && typeof password !== 'string') {
-        console.error('Invalid password type:', password);
-        return res.status(400).json({ message: 'Password must be a string' });
-    }
-    if (email && typeof email !== 'string') {
-        console.error('Invalid email type:', email);
-        return res.status(400).json({ message: 'Email must be a string' });
-    }
-
-    try {
-        // Hash new password if provided
-        let updateData = { username, email };
-        if (password) {
-            const salt = await bcrypt.genSalt(10);
-            updateData.password = await bcrypt.hash(password, salt);
-        }
-
-        // Find and update the user:
-        const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true });
-        if (!updatedUser) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        // Send back updated user data (excluding password)
-        res.json({ user: { _id: updatedUser._id, username: updatedUser.username, email: updatedUser.email } });
-    } catch (error) {
-        console.error('Update error:', error);
-        res.status(500).json({ message: 'An error occurred during user update', error: error.message });
-    }
-};
-
-////////////////////////////////////////////////////////////////////////////////////////
-
-// ----- Delete a specific user (DELETE) -----
-const deleteUser = async (req, res) => {
-    const userId = req.params.id;
-
-    try {
-        const deletedUser = await User.findByIdAndDelete(userId);
-        if (!deletedUser) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        res.json({ message: "User deleted" });
-    } catch (error) {
-        console.error('Delete error:', error);
-        res.status(500).json({ message: 'An error occurred during user deletion', error: error.message });
-    }
-};
-
-////////////////////////////////////////////////////////////////////////////////////////
-
-// ----- User Signup (POST) -----
+// ----------------------------------------
+// Handles user signup process
 const signup = async (req, res) => {
+  try {
+    // 1. Get Email and Password from request body
     const { email, password } = req.body;
 
-    // Check if all required fields are present:
-    if (!email || !password) {
-        console.error('Missing required fields:', { email, password });
-        return res.status(400).json({ message: 'Email and password are required' });
-    }
+    // ** Hash Password **
+    const hashedPassword = bcrypt.hashSync(password, 8);
 
-    // Ensure the fields are of the correct type:
-    if (typeof email !== 'string' || typeof password !== 'string') {
-        console.error('Invalid field types:', { email, password });
-        return res.status(400).json({ message: 'Email and password must be strings' });
-    }
+    // 2. Create User
+    const newUser = await User.create({
+      email,
+      password: hashedPassword,
+    });
 
-    try {
-        // Check for an existing user:
-        const existingUser = await User.findOne({ email: email.toLowerCase() });
-        if (existingUser) {
-            console.log("Email already exists.");
-            return res.status(400).json({ message: 'Email already exists' });
-        }
-
-        // Hash the password:
-        const hashedPassword = bcrypt.hashSync(password, 8);
-
-        // Create the new user:
-        const user = new User({
-            email: email.toLowerCase(),
-            password: hashedPassword
-        });
-
-        await user.save();
-
-        // Generate JWT token after user creation:
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-
-        console.log("Successfully generated JWT token");
-
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
-            maxAge: 24 * 60 * 60 * 1000 // 1 day
-        });
-
-        // Respond with new copy of user (excluding the password):
-        res.status(201).json({ user: { _id: user._id, email: user.email } });
-    } catch (error) {
-        console.error('Signup error:', error);
-        res.status(500).json({ message: 'An error occurred during signup', error: error.message });
-    }
+    console.log("User Created", newUser);
+    // Send Response
+    res.sendStatus(200);
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
 };
 
-////////////////////////////////////////////////////////////////////////////////////////
-
-// ----- User Login (POST) -----
-const loginUser = async (req, res) => {
+// ----------------------------------------
+// Handles user login process
+const login = async (req, res) => {
+  try {
+    // 1. Get email and password from request body
     const { email, password } = req.body;
 
-    // Check if all required fields are present:
-    if (!email || !password) {
-        console.error('Missing required fields:', { email, password });
-        return res.status(400).json({ message: 'Email and password are required' });
-    }
+    // 2. Find User with the requested email
+    const user = await User.findOne({ email });
+    console.log(`User: ${user}`);
+    if (!user) return res.sendStatus(401);
 
-    // Ensure the fields are of the correct type:
-    if (typeof email !== 'string' || typeof password !== 'string') {
-        console.error('Invalid field types:', { email, password });
-        return res.status(400).json({ message: 'Email and password must be strings' });
-    }
+    // 3. Compare provided password with the stored hashed password
+    const passwordMatch = bcrypt.compareSync(password, user.password);
+    console.log("Password Verified");
+    if (!passwordMatch) return res.sendStatus(401);
 
-    try {
-        const user = await User.findOne({ email: email.toLowerCase() });
-        if (!user) {
-            console.log("User not found with email:", email);
-            return res.status(401).json({ message: 'Invalid email or password' });
-        }
+    // 4. Create JWT
+    const exp = Date.now() + 1000 * 60 * 60 * 24 * 30; // Token expiration set to 30 days
+    console.log(exp);
+    const token = jwt.sign({ sub: user._id, exp }, process.env.SECRET);
+    console.log("Token:", token);
 
-        const isPasswordMatch = await bcrypt.compare(password, user.password);
-        if (!isPasswordMatch) {
-            console.log("Invalid password for email:", email);
-            return res.status(401).json({ message: 'Invalid email or password' });
-        }
+    // Set the token as a cookie
+    res.cookie("Authorization", token, {
+      expires: new Date(exp), // sets expiration date for cookie
+      httpOnly: true,         // allows only browser and server to read
+      sameSite: "lax"         // CSRF protection
+    });
 
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-        console.log("Generated JWT token");
-
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
-            maxAge: 24 * 60 * 60 * 1000
-        });
-        res.json({ message: 'Login successful', user: { id: user._id, email: user.email } });
-    } catch (error) {
-        res.status(500).json({ message: 'Internal server error', error: error.message });
-    }
+    res.sendStatus(200);
+    // Cookies save information about a user's session
+    // By default, Express doesn't read cookies off request body, so you need 'cookie-parser'
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
 };
 
-////////////////////////////////////////////////////////////////////////////////////////
+// ----------------------------------------
+// Handles user logout process
+const logout = (req, res) => {
+  res.clearCookie("Authorization");
+  res.sendStatus(200);
+  console.log(`Successfully Logged Out`);
+};
 
-// ----- User Logout -----
-const logoutUser = async (req, res) => {
-    res.clearCookie('token');
-    res.json({ message: 'Logout successful' });
+// ----------------------------------------
+// Checks if the user is authenticated
+const checkAuth = (req, res) => {
+  console.log(req.user);
+  res.sendStatus(200);
 };
 
 module.exports = {
-    fetchAllUsers,
-    fetchUser,
-    createUser,
-    updateUser,
-    deleteUser,
-    signup,
-    loginUser,
-    logoutUser
+  signup,
+  login,
+  logout,
+  checkAuth
 };

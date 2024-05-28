@@ -38,15 +38,6 @@ app.use("/sports", sportsRoutes)
 app.use("/questions", questionsRoutes);
 
 
-
-
-
-
-
-
-
-
-
 // -------------------------------- [Databse Connection]------------------------------
 
 app.listen(PORT, () => {
