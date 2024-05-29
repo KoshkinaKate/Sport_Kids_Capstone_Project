@@ -3,24 +3,24 @@ const router = express.Router();
 const sportsController = require("../controllers/sportsController")
 
 
-//-------------------------NOTES ROUTES-------------------------
+//-------------------------Sports ROUTES-------------------------
 
-// -----Get ALL Notes (GET):-----
+// -----Get ALL Sports (GET):-----
 router.get("/", sportsController.fetchAllSports)
 
 
-// -----Get specific Notes by ID (GET):-----
+// -----Get specific Sport by ID (GET):-----
 router.get("/:id", sportsController.fetchSport)
 
-// -----Create a Note (POST):-----
+// -----Create a Sport (POST):-----
 router.post("/", sportsController.createSport)
 
 
-// -----Update a specific note (PUT):-----
+// -----Update a specific Sport (PUT):-----
 router.put("/:id", sportsController.updateSport)
 
 
-// -----Delete a specific note (DELETE):-----
+// -----Delete a specific Sport (DELETE):-----
 router.delete("/:id", sportsController.deleteSport)
 
 module.exports = router;

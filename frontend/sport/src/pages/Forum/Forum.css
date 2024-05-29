@@ -70,9 +70,6 @@
   transition: transform 0.3s ease;
 }
 
-.forum-list li:last-child {
-  border-bottom: none;
-}
 
 .forum-list li:hover {
   transform: translateY(-10px);
@@ -87,6 +84,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* border: solid blue; */
 }
 
 .forum-list .question-container button {

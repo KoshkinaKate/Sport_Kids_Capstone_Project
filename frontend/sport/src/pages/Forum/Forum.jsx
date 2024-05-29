@@ -3,18 +3,18 @@ import axios from 'axios';
 import './Forum.css';
 
 const Forum = () => {
-  const [questions, setQuestions] = useState([]);
-  const [newQuestion, setNewQuestion] = useState('');
-  const [editingQuestion, setEditingQuestion] = useState(null);
-  const [editedQuestionBody, setEditedQuestionBody] = useState('');
+  const [questions, setQuestions] = useState([]); //State to hold the list of questions
+  const [newQuestion, setNewQuestion] = useState(''); //hold text of new questions
+  const [editingQuestion, setEditingQuestion] = useState(null); //hold ID of added questions
+  const [editedQuestionBody, setEditedQuestionBody] = useState(''); //hold the text of the edited questions
 
   useEffect(() => {
     fetchQuestions();
-  }, []);
+  }, []); //show all questions upfront , fetch data
 
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/questions');
+      const response = await axios.get('http://localhost:3000/questions'); //fetches data
       setQuestions(response.data.questions || []);
     } catch (error) {
       console.error('Error fetching questions:', error);
@@ -24,9 +24,9 @@ const Forum = () => {
 
   const createQuestion = async () => {
     try {
-      await axios.post('http://localhost:3000/questions', { body: newQuestion });
-      setNewQuestion('');
-      fetchQuestions();
+      await axios.post('http://localhost:3000/questions', { body: newQuestion }); //Sends a POST request
+      setNewQuestion(''); //Clears the input field after creating a question.
+      fetchQuestions(); //Refreshes the list of questions to include the new question
     } catch (error) {
       console.error('Error creating question:', error);
     }
@@ -44,7 +44,7 @@ const Forum = () => {
   const updateQuestion = async (id) => {
     try {
       await axios.put(`http://localhost:3000/questions/${id}`, { body: editedQuestionBody });
-      setEditingQuestion(null);
+      setEditingQuestion(null); //Resets the editingQuestion state to null, ending the edit mode
       setEditedQuestionBody('');
       fetchQuestions();
     } catch (error) {
@@ -52,7 +52,7 @@ const Forum = () => {
     }
   };
 
-  const startEditing = (question) => {
+  const startEditing = (question) => { //Sets the state for editing a question.
     setEditingQuestion(question._id);
     setEditedQuestionBody(question.body);
   };
@@ -64,7 +64,8 @@ const Forum = () => {
         <input
           type="text"
           value={newQuestion}
-          onChange={(e) => setNewQuestion(e.target.value)}
+          onChange={(e) => setNewQuestion(e.target.value)} //event handler, current value of the target element
+          // An event handler that is triggered whenever the value of the input field changes
           placeholder="Ask a question..."
         />
         <button onClick={createQuestion}>Submit</button>

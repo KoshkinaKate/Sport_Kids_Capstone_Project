@@ -10,7 +10,7 @@ const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
-
+//STILL UNDER CONSTRUCTION - NOT WORKING FUNCTIONS 
   const handleClose = () => setShowModal(false);
   const handleShowLogin = () => {
     setIsLogin(true);
@@ -18,7 +18,7 @@ const Navbar = () => {
   };
   const handleShowSignup = () => {
     setIsLogin(false);
-    setShowModal(true);
+    setShowModal(true); 
   };
 
   return (

@@ -3,8 +3,8 @@ const eventSchema = new mongoose.Schema({
 
     title: {
         type: String,
-        required: true,
-        trim: true
+        required: true, //make this title field mandatory
+        trim: true  //removes whitespace from the title
     },
     body: {
         type: String,

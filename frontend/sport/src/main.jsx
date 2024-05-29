@@ -12,3 +12,6 @@ ReactDOM.render(
   </StrictMode>,
   document.getElementById("root")
 );
+
+
+//It sets up the React environment, renders the root component, and integrates routing functionality.

@@ -3,24 +3,24 @@ const router = express.Router();
 const questionsController = require("../controllers/questionsController")
 
 
-//-------------------------EVENTS ROUTES-------------------------
+//-------------------------Questions ROUTES-------------------------
 
-// -----Get ALL Events (GET):-----
+// -----Get ALL Questions (GET):-----
 router.get("/", questionsController.fetchAllQuestions)
 
 
-// -----Get specific Event by ID (GET):-----
+// -----Get specific Question by ID (GET):-----
 router.get("/:id", questionsController.fetchQuestion)
 
-// -----Create a Event (POST):-----
+// -----Create a Question (POST):-----
 router.post("/", questionsController.createQuestion)
 
 
-// -----Update a specific Event (PUT):-----
+// -----Update a specific Question (PUT):-----
 router.put("/:id", questionsController.updateQuestion)
 
 
-// -----Delete a specific Event (DELETE):-----
+// -----Delete a specific Question (DELETE):-----
 router.delete("/:id", questionsController.deleteQuestion)
 
 module.exports = router;

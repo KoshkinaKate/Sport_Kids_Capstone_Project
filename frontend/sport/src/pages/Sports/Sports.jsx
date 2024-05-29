@@ -3,8 +3,8 @@ import axios from 'axios';
 import './Sports.css';
 
 const Sports = () => {
-  const [sports, setSports] = useState([]);
-  const [showMore, setShowMore] = useState({});
+  const [sports, setSports] = useState([]); // holds an empty array 
+  const [showMore, setShowMore] = useState({}); //holds an object
 
   useEffect(() => {
     fetchSports();
@@ -13,7 +13,8 @@ const Sports = () => {
   const fetchSports = async () => {
     try {
       const response = await axios.get('http://localhost:3000/sports');
-      setSports(response.data.sports);
+      const sortedSports = response.data.sports.sort((a, b) => a.title.localeCompare(b.title));
+      setSports(sortedSports);
     } catch (error) {
       console.error('Error fetching sports:', error);
     }
@@ -49,7 +50,7 @@ const Sports = () => {
 
   return (
     <div className="sports-container">
-      {sports.map((sport) => {
+      {sports.map((sport) => { //iterates over each sport and renders the first paragraph by default
         const paragraphs = sport.body.split('\n\n');
         const firstParagraph = paragraphs[0];
         const remainingText = paragraphs.slice(1).join('\n\n');
@@ -77,4 +78,5 @@ const Sports = () => {
 };
 
 export default Sports;
+
 

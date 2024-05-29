@@ -17,3 +17,6 @@ const Modal = ({ show, handleClose, children }) => {
 };
 
 export default Modal;
+
+//this page is related to signUp and Auth for NavBar presentation. STILL UNDER CONSTRACTION
+//UI element that overlays the main content, used to display additional information or to collect input from the user.
