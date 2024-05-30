@@ -1,6 +1,6 @@
 # PlayFit
 
-Welcome to PlayFit! This project aims to inspire kids to stay active and healthy by discovering the amazing world of sports. Our platform helps children and parents explore different sports and find the perfect fit for their interests and abilities.
+Welcome to PlayFit! This project aims to inspire kids to stay active and healthy by discovering the amazing world of sports. My platform helps children and parents explore different sports and find the perfect fit for their interests and abilities.
 
 ## Table of Contents
 
@@ -20,11 +20,11 @@ PlayFit is an interactive platform designed to encourage children to engage in s
 
 ### Key Features
 
-1. **User Authentication**: Users can create accounts, log in, and log out. Authentication is handled using JWT tokens.
-2. **Sports Information**: The platform provides detailed information about a variety of sports. Each sport's page includes an overview, benefits, age requirements, and more.
-3. **Expandable Content**: Users can expand sections to view more detailed information.
-4. **Responsive Design**: The application is designed to be fully responsive, ensuring a seamless experience across all devices.
-5. **Dynamic Content Loading**: Sports data is fetched from a backend server and displayed dynamically.
+
+1. **Sports Information**: The platform provides detailed information about a variety of sports. Each sport's page includes an overview, benefits, age requirements, and more.
+2. **Expandable Content**: Users can expand sections to view more detailed information.
+3. **Responsive Design**: The application is designed to be fully responsive, ensuring a seamless experience across all devices.
+4. **Dynamic Content Loading**: Sports data is fetched from a backend server and displayed dynamically.
 
 ## Installation
 
@@ -71,11 +71,10 @@ To run the project locally, follow these steps:
 
 ## Features
 
-- **User Authentication**: Sign up, login, and logout functionality.
 - **Sports Information**: Detailed information about various sports, including benefits, age requirements, and more.
 - **Dynamic Content**: Expandable sections to show more or less information as needed.
 - **Responsive Design**: Optimized for various screen sizes.
-- **Protected Routes**: Certain routes are protected and require user authentication to access.
+
 
 ## Project Structure
 
