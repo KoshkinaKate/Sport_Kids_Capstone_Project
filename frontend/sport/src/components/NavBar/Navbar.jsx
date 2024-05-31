@@ -1,25 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
-import Modal from "../Modal/Modal";
-import LoginForm from "../AuthForms/LoginForm";
-import SignupForm from "../AuthForms/SignupForm";
 import "./Navbar.css";
 
 const Navbar = () => {
-  const { user, logout } = useContext(AuthContext);
-  const [showModal, setShowModal] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
-//STILL UNDER CONSTRUCTION - NOT WORKING FUNCTIONS 
-  const handleClose = () => setShowModal(false);
-  const handleShowLogin = () => {
-    setIsLogin(true);
-    setShowModal(true);
-  };
-  const handleShowSignup = () => {
-    setIsLogin(false);
-    setShowModal(true); 
-  };
+  const { user } = useContext(AuthContext); //access the values that are provided by the AuthProvider component and extracting user
 
   return (
     <nav className="navbar">
@@ -30,26 +15,16 @@ const Navbar = () => {
         <li><Link to="/events">Events</Link></li>
         <li><Link to="/about">About</Link></li>
         <li><Link to="/forum">Forum</Link></li>
+        <li><Link to="/join-us">Join Us</Link></li>
       </ul>
-      {/* <div className="auth-links">
-        {user ? (
-          <button onClick={logout}>Logout</button>
-        ) : (
-          <>
-            <button onClick={handleShowLogin}>Sign In</button>
-            <button onClick={handleShowSignup}>Sign Up</button>
-          </>
-        )}
-      </div> */} 
-
-      <Modal show={showModal} handleClose={handleClose}>
-        {isLogin ? <LoginForm switchToSignup={handleShowSignup} /> : <SignupForm switchToLogin={handleShowLogin} />}
-      </Modal>
+      {user && <Link to="/my-account">My Account</Link>}
     </nav>
   );
 };
 
 export default Navbar;
+
+
 
 
 

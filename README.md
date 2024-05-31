@@ -124,3 +124,6 @@ Create a `.env` file in the `backend` directory:
 PORT=3000
 SECRET=your_jwt_secret
 MONGO_URI=your_mongo_db_connection_string
+
+
+

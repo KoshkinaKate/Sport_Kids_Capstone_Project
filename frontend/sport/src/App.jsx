@@ -4,6 +4,7 @@ import Sports from './pages/Sports/Sports';
 import Events from './pages/Events/Events';
 import About from './pages/About/About';
 import Forum from './pages/Forum/Forum';
+import JoinUs from './pages/JoinUs/JoinUs';
 import Navbar from './components/NavBar/Navbar';
 import Footer from './components/Footer/Footer';
 import { AuthProvider } from './context/AuthContext';
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/events" element={<Events />} />
           <Route path="/about" element={<About />} />
           <Route path="/forum" element={<Forum />} />
+          <Route path="/join-us" element={<JoinUs />} />
         </Routes>
         <Footer />
       </div>

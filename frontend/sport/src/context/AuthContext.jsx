@@ -22,8 +22,8 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = async (email, password) => {
-    const response = await axios.post('http://localhost:3000/users/login', { email, password });
+  const login = async (username, password) => {
+    const response = await axios.post('http://localhost:3000/users/login', { username, password });
     localStorage.setItem('token', response.data.token);
     setUser(response.data.user);
   };
@@ -47,4 +47,5 @@ export const AuthProvider = ({ children }) => {
 };
 
 export default AuthContext;
+
 
