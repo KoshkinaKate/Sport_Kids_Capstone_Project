@@ -45,3 +45,4 @@ const LoginForm = ({ switchToSignup }) => { // LoginForm component accepting a p
 
 export default LoginForm; 
 
+//when i login it transfers me to the page with my account option but when i create account/sign up it does not offers me an option for my!!!!!!!!!!

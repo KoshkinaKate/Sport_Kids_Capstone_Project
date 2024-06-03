@@ -12,7 +12,7 @@ const Sports = () => {
 
   const fetchSports = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/sports');
+      const response = await axios.get('https://playfit-project.onrender.com/sports');
       const sortedSports = response.data.sports.sort((a, b) => a.title.localeCompare(b.title));
       setSports(sortedSports);
     } catch (error) {
