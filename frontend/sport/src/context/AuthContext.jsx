@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      axios.get('https://playfit-project.onrender.com/users/protected/data', {
+      axios.get('http://localhost:3000/users/protected/data', {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
@@ -23,13 +23,13 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (username, password) => {
-    const response = await axios.post('https://playfit-project.onrender.com/users/login', { username, password });
+    const response = await axios.post('http://localhost:3000/users/login', { username, password });
     localStorage.setItem('token', response.data.token);
     setUser(response.data.user);
   };
 
   const signup = async (email, password, username) => {
-    const response = await axios.post('https://playfit-project.onrender.com/users/signup', { email, password, username });
+    const response = await axios.post('http://localhost:3000/users/signup', { email, password, username });
     localStorage.setItem('token', response.data.token);
     setUser(response.data.user);
   };

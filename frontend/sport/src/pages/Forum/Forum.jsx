@@ -14,7 +14,7 @@ const Forum = () => {
 
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get('https://playfit-project.onrender.com/questions'); //fetches data
+      const response = await axios.get('http://localhost:3000/questions'); //fetches data
       setQuestions(response.data.questions || []);
     } catch (error) {
       console.error('Error fetching questions:', error);

@@ -33,7 +33,7 @@ To get started with the PlayFit project, follow these steps:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/playfit.git
+    git clone s://github.com/your-username/playfit.git
     cd playfit
     ```
 
