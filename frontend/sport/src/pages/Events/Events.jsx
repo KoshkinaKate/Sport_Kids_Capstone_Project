@@ -13,7 +13,7 @@ const Events = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/events'); //fetches events from the server using axios
+      const response = await axios.get('https://playfit-project-backend.onrender.com/events'); //fetches events from the server using axios
       setEvents(response.data.events); //if successful - updates 'events'
     } catch (error) {
       console.error('Error fetching events:', error);

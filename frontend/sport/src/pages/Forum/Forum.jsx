@@ -14,7 +14,7 @@ const Forum = () => {
 
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/questions'); //fetches data
+      const response = await axios.get('https://playfit-project-backend.onrender.com/questions'); //fetches data
       setQuestions(response.data.questions || []);
     } catch (error) {
       console.error('Error fetching questions:', error);
@@ -24,7 +24,7 @@ const Forum = () => {
 
   const createQuestion = async () => {
     try {
-      await axios.post('http://localhost:3000/questions', { body: newQuestion }); //Sends a POST request
+      await axios.post('https://playfit-project-backend.onrender.com/questions', { body: newQuestion }); //Sends a POST request
       setNewQuestion(''); //Clears the input field after creating a question.
       fetchQuestions(); //Refreshes the list of questions to include the new question
     } catch (error) {
@@ -34,7 +34,7 @@ const Forum = () => {
 
   const deleteQuestion = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/questions/${id}`);
+      await axios.delete(`https://playfit-project-backend.onrender.com/questions/${id}`);
       fetchQuestions();
     } catch (error) {
       console.error('Error deleting question:', error);
@@ -43,7 +43,7 @@ const Forum = () => {
 
   const updateQuestion = async (id) => {
     try {
-      await axios.put(`http://localhost:3000/questions/${id}`, { body: editedQuestionBody });
+      await axios.put(`https://playfit-project-backend.onrender.com/questions/${id}`, { body: editedQuestionBody });
       setEditingQuestion(null); //Resets the editingQuestion state to null, ending the edit mode
       setEditedQuestionBody('');
       fetchQuestions();
